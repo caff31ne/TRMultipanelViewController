@@ -143,6 +143,7 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
                                                               attribute:NSLayoutAttributeTrailing
                                                              multiplier:1
                                                                constant:0];
+    rightCenterConstraint.priority = 999;
     
     [self.view addConstraints:@[topCenterConstraint, bottomCenterConstraint, leftCenterConstraint,rightCenterConstraint]];
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		538CFF982EDF3F245F192259 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BFC96F713A5F1DAEEC09F4 /* libPods.a */; };
 		64313BC91A6C05C200AFF287 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64313BC81A6C05C200AFF287 /* main.m */; };
 		64313BCC1A6C05C200AFF287 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64313BCB1A6C05C200AFF287 /* AppDelegate.m */; };
 		64313BCF1A6C05C200AFF287 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64313BCE1A6C05C200AFF287 /* ViewController.m */; };
@@ -14,6 +15,9 @@
 		64313BD41A6C05C200AFF287 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64313BD31A6C05C200AFF287 /* Images.xcassets */; };
 		64313BD71A6C05C200AFF287 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64313BD51A6C05C200AFF287 /* LaunchScreen.xib */; };
 		64313BE31A6C05C200AFF287 /* TRMultipanelViewControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64313BE21A6C05C200AFF287 /* TRMultipanelViewControllerDemoTests.m */; };
+		64313BEE1A6C103400AFF287 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64313BED1A6C103400AFF287 /* CollectionViewController.m */; };
+		64313BF11A6C11E700AFF287 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64313BF01A6C11E700AFF287 /* CollectionViewCell.m */; };
+		64313BF31A6C155900AFF287 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64313BF21A6C155900AFF287 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34E27FD10CD674FC304B4EA3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		55BFC96F713A5F1DAEEC09F4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		596277415AD12829F1985F41 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		64313BC31A6C05C200AFF287 /* TRMultipanelViewControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRMultipanelViewControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64313BC71A6C05C200AFF287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64313BC81A6C05C200AFF287 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +47,11 @@
 		64313BDC1A6C05C200AFF287 /* TRMultipanelViewControllerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRMultipanelViewControllerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64313BE11A6C05C200AFF287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64313BE21A6C05C200AFF287 /* TRMultipanelViewControllerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRMultipanelViewControllerDemoTests.m; sourceTree = "<group>"; };
+		64313BEC1A6C103400AFF287 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		64313BED1A6C103400AFF287 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		64313BEF1A6C11E700AFF287 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		64313BF01A6C11E700AFF287 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		64313BF21A6C155900AFF287 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64313BF31A6C155900AFF287 /* AssetsLibrary.framework in Frameworks */,
+				538CFF982EDF3F245F192259 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +74,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B6F5795D06B809FD1ED17C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64313BF21A6C155900AFF287 /* AssetsLibrary.framework */,
+				55BFC96F713A5F1DAEEC09F4 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		64313BBA1A6C05C200AFF287 = {
 			isa = PBXGroup;
 			children = (
 				64313BC51A6C05C200AFF287 /* TRMultipanelViewControllerDemo */,
 				64313BDF1A6C05C200AFF287 /* TRMultipanelViewControllerDemoTests */,
 				64313BC41A6C05C200AFF287 /* Products */,
+				8DEE13C570AC03377A98230C /* Pods */,
+				4B6F5795D06B809FD1ED17C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +110,10 @@
 				64313BCB1A6C05C200AFF287 /* AppDelegate.m */,
 				64313BCD1A6C05C200AFF287 /* ViewController.h */,
 				64313BCE1A6C05C200AFF287 /* ViewController.m */,
+				64313BEC1A6C103400AFF287 /* CollectionViewController.h */,
+				64313BED1A6C103400AFF287 /* CollectionViewController.m */,
+				64313BEF1A6C11E700AFF287 /* CollectionViewCell.h */,
+				64313BF01A6C11E700AFF287 /* CollectionViewCell.m */,
 				64313BD01A6C05C200AFF287 /* Main.storyboard */,
 				64313BD31A6C05C200AFF287 /* Images.xcassets */,
 				64313BD51A6C05C200AFF287 /* LaunchScreen.xib */,
@@ -119,6 +148,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8DEE13C570AC03377A98230C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				34E27FD10CD674FC304B4EA3 /* Pods.debug.xcconfig */,
+				596277415AD12829F1985F41 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +164,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64313BE61A6C05C200AFF287 /* Build configuration list for PBXNativeTarget "TRMultipanelViewControllerDemo" */;
 			buildPhases = (
+				CAFF425C07EF21EA90D58539 /* Check Pods Manifest.lock */,
 				64313BBF1A6C05C200AFF287 /* Sources */,
 				64313BC01A6C05C200AFF287 /* Frameworks */,
 				64313BC11A6C05C200AFF287 /* Resources */,
+				7928C61A1F6B10A17678E38B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,11 +254,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7928C61A1F6B10A17678E38B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAFF425C07EF21EA90D58539 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		64313BBF1A6C05C200AFF287 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64313BEE1A6C103400AFF287 /* CollectionViewController.m in Sources */,
+				64313BF11A6C11E700AFF287 /* CollectionViewCell.m in Sources */,
 				64313BCF1A6C05C200AFF287 /* ViewController.m in Sources */,
 				64313BCC1A6C05C200AFF287 /* AppDelegate.m in Sources */,
 				64313BC91A6C05C200AFF287 /* main.m in Sources */,
@@ -343,9 +418,11 @@
 		};
 		64313BE71A6C05C200AFF287 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34E27FD10CD674FC304B4EA3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TRMultipanelViewControllerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -353,9 +430,11 @@
 		};
 		64313BE81A6C05C200AFF287 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 596277415AD12829F1985F41 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TRMultipanelViewControllerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -414,6 +493,7 @@
 				64313BE81A6C05C200AFF287 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		64313BE91A6C05C200AFF287 /* Build configuration list for PBXNativeTarget "TRMultipanelViewControllerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +502,7 @@
 				64313BEB1A6C05C200AFF287 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

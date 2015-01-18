@@ -1,0 +1,5 @@
+platform :ios, "6.0"
+
+xcodeproj 'TRMultipanelViewControllerDemo/TRMultipanelViewControllerDemo.xcodeproj'
+
+pod 'TRMultipanelViewController', :git => 'https://github.com/incaffeine/TRMultipanelViewController.git'

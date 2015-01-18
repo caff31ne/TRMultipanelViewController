@@ -8,7 +8,14 @@
 
 #import "ViewController.h"
 
+#import <TRMultipanelViewController/TRMultipanelViewController.h>
+
 @interface ViewController ()
+
+@property (strong, nonatomic) TRMultipanelViewController* multipanel;
+
+- (IBAction)leftPanelDidToggle:(id)sender;
+- (IBAction)rightPanelDidToggle:(id)sender;
 
 @end
 
@@ -16,12 +23,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [self.multipanel hideSide:TRMultipanelSideTypeRight animated:NO];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"multipanel"]) {
+        self.multipanel = segue.destinationViewController;
+        
+        UICollectionViewController* centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"centerController"];
+        [self.multipanel addChildViewController:centerController];
+
+        centerController.view.frame = self.multipanel.centerView.bounds;
+        [self.multipanel.centerView addSubview:centerController.view];
+
+        UITableViewController* leftController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftController"];
+        [self.multipanel setContentController:leftController
+                                 forSide:TRMultipanelSideTypeLeft];
+        
+        UITableViewController* rightController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightController"];
+        [self.multipanel setContentController:rightController
+                                 forSide:TRMultipanelSideTypeRight];
+    }
+}
+
+- (IBAction)leftPanelDidToggle:(id)sender {
+    [self.multipanel toggleSide:TRMultipanelSideTypeLeft animated:YES];
+}
+
+- (IBAction)rightPanelDidToggle:(id)sender {
+    [self.multipanel toggleSide:TRMultipanelSideTypeRight animated:YES];
 }
 
 @end
