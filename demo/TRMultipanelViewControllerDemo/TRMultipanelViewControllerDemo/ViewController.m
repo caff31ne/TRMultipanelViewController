@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.multipanel setWidth:240 forSide:TRMultipanelSideTypeLeft];
+    [self.multipanel setWidth:240 forSide:TRMultipanelSideTypeRight];
     [self.multipanel hideSide:TRMultipanelSideTypeRight animated:NO];
 }
 
@@ -32,10 +34,7 @@
         self.multipanel = segue.destinationViewController;
         
         UICollectionViewController* centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"centerController"];
-        [self.multipanel addChildViewController:centerController];
-
-        centerController.view.frame = self.multipanel.centerView.bounds;
-        [self.multipanel.centerView addSubview:centerController.view];
+        [self.multipanel setCenterController:centerController];
 
         UITableViewController* leftController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftController"];
         [self.multipanel setContentController:leftController

@@ -10,6 +10,8 @@
 
 #import "TRMultipanelViewControllerSide.h"
 
+#import "UIView+TRMultipanel.h"
+
 NSString* const TRMultipanelDidShowSideNotification = @"TRMultipanelDidShowSideNotification";
 NSString* const TRMultipanelDidHideSideNotification = @"TRMultipanelDidHideSideNotification";
 NSString* const TRMultipanelDidToggleSideNotification = @"TRMultipanelDidToggleSideNotification";
@@ -31,6 +33,26 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
 }
 
 #pragma mark -- Public 
+
+- (void)setCenterController:(UIViewController*)centerController {
+    if (_centerController != centerController) {
+        if (_centerController) {
+            [_centerController removeFromParentViewController];
+            [_centerController.view removeFromSuperview];
+        }
+        
+        _centerController = centerController;
+        
+        if (centerController) {
+            [self addChildViewController:centerController];
+    
+            centerController.view.translatesAutoresizingMaskIntoConstraints = NO;
+            centerController.view.frame = self.centerView.bounds;
+            [self.centerView addSubview:centerController.view];
+            [centerController.view tieToSuperview];
+        }
+    }
+}
 
 - (UIViewController*)contentControllerForSide:(TRMultipanelSideType)sideType {
     TRMultipanelViewControllerSide* side = [self sideWithType:sideType];

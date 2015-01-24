@@ -9,6 +9,8 @@
 #import "TRMultipanelViewControllerSide.h"
 #import "TRMultipanelViewController.h"
 
+#import "UIView+TRMultipanel.h"
+
 static const int TRPanActionThreshold = 100;
 
 @interface TRMultipanelViewControllerSide () <UIGestureRecognizerDelegate>
@@ -73,46 +75,11 @@ static const int TRPanActionThreshold = 100;
             _contentController.view.translatesAutoresizingMaskIntoConstraints = NO;
             [self.container addChildViewController:_contentController];
             [self.view addSubview:_contentController.view];
-            [self tieToSuperview:_contentController.view];
+            [_contentController.view tieToSuperview];
             [_contentController.view setNeedsLayout];
             [_contentController.view layoutIfNeeded];
         }
     }
-}
-
-- (void)tieToSuperview:(UIView*)view {
-    NSLayoutConstraint* topConstraint = [NSLayoutConstraint constraintWithItem:view.superview
-                                                                     attribute:NSLayoutAttributeTop
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:view
-                                                                     attribute:NSLayoutAttributeTop
-                                                                    multiplier:1
-                                                                      constant:0];
-    NSLayoutConstraint* bottomConstraint = [NSLayoutConstraint constraintWithItem:view.superview
-                                                                        attribute:NSLayoutAttributeBottom
-                                                                        relatedBy:NSLayoutRelationEqual
-                                                                           toItem:view
-                                                                        attribute:NSLayoutAttributeBottom
-                                                                       multiplier:1
-                                                                         constant:0];
-    
-    NSLayoutConstraint* leftConstraint = [NSLayoutConstraint constraintWithItem:view.superview
-                                                                      attribute:NSLayoutAttributeLeading
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:view
-                                                                      attribute:NSLayoutAttributeLeading
-                                                                     multiplier:1
-                                                                       constant:0];
-    
-    NSLayoutConstraint* rightConstraint = [NSLayoutConstraint constraintWithItem:view.superview
-                                                                       attribute:NSLayoutAttributeTrailing
-                                                                       relatedBy:NSLayoutRelationEqual
-                                                                          toItem:view
-                                                                       attribute:NSLayoutAttributeTrailing
-                                                                      multiplier:1
-                                                                        constant:0];
-    
-    [view.superview addConstraints:@[topConstraint, bottomConstraint, leftConstraint, rightConstraint]];
 }
 
 - (NSArray*)viewSequenceWithView:(UIView*)view

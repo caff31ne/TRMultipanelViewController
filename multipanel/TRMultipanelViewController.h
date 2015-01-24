@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, TRMultipanelSideType) {
 
 @property (weak, nonatomic) id<TRMultipanelViewControllerDelegate> delegate;
 @property (strong, nonatomic) UIView* centerView;
+@property (strong, nonatomic) UIViewController* centerController;
 
 - (UIViewController*)contentControllerForSide:(TRMultipanelSideType)side;
 - (void)setContentController:(UIViewController*)controller forSide:(TRMultipanelSideType)side;
