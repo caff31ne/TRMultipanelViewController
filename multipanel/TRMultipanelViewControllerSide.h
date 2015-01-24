@@ -25,6 +25,7 @@
 @property (assign, nonatomic) BOOL visible;
 @property (assign, nonatomic) CGFloat width;
 @property (strong, nonatomic) UIView* view;
+@property (weak, nonatomic) NSLayoutConstraint* centerEdgeConstraint;
 
 - (instancetype)initWithContainer:(TRMultipanelViewController*)container
       boundaryConnectionAttribute:(NSLayoutAttribute)boundaryConnectionAttribute

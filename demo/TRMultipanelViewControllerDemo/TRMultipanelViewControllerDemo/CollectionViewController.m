@@ -47,16 +47,21 @@ static CGFloat CellMargin = 10;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onToggleMultipanelSide:)
-                                                 name:TRMultipanelDidToggleSideNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onToggleMultipanelSide:)
                                                  name:TRMultipanelDidShowSideNotification
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onToggleMultipanelSide:)
-                                                 name:TRMultipanelDidHideSideNotification
-                                               object:nil];
+    
+    if (self.updateAfterResize)
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onToggleMultipanelSide:)
+                                                     name:TRMultipanelWillHideSideNotification
+                                                   object:nil];
+    else
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onToggleMultipanelSide:)
+                                                     name:TRMultipanelDidHideSideNotification
+                                                   object:nil];
+
+
     [self updateLayout];
 }
 
@@ -111,10 +116,12 @@ static CGFloat CellMargin = 10;
 
 - (void)updateLayout {
     UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    NSLog(@"Layut update: width = %f", self.view.frame.size.width);
+    
     CGFloat width = (self.view.frame.size.width - 2 * ContainerPadding - ((ImagesPerLine - 1) * CellMargin)) / ImagesPerLine;
     
     layout.itemSize = CGSizeMake(width, width);
-    [self.collectionView setCollectionViewLayout:layout animated:YES];
+    [self.collectionView setCollectionViewLayout:layout animated:NO];
 }
 
 @end

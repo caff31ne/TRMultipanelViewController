@@ -10,9 +10,10 @@
 
 @class TRMultipanelViewController;
 
+extern NSString* const TRMultipanelWillShowSideNotification;
 extern NSString* const TRMultipanelDidShowSideNotification;
+extern NSString* const TRMultipanelWillHideSideNotification;
 extern NSString* const TRMultipanelDidHideSideNotification;
-extern NSString* const TRMultipanelDidToggleSideNotification;
 
 typedef NS_ENUM(NSInteger, TRMultipanelSideType) {
     TRMultipanelSideTypeUnknown,
@@ -32,6 +33,7 @@ typedef NS_ENUM(NSInteger, TRMultipanelSideType) {
 @property (weak, nonatomic) id<TRMultipanelViewControllerDelegate> delegate;
 @property (strong, nonatomic) UIView* centerView;
 @property (strong, nonatomic) UIViewController* centerController;
+@property (assign, nonatomic) BOOL connectCenterViewToSides;
 
 - (UIViewController*)contentControllerForSide:(TRMultipanelSideType)side;
 - (void)setContentController:(UIViewController*)controller forSide:(TRMultipanelSideType)side;

@@ -10,4 +10,6 @@
 
 @interface CollectionViewController : UICollectionViewController
 
+@property (assign, nonatomic) BOOL updateAfterResize;
+
 @end

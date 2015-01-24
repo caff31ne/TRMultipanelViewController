@@ -56,6 +56,9 @@ static const int TRPanActionThreshold = 100;
         
         if (self.widthConstraint) {
             self.widthConstraint.constant = width;
+            if (self.positionConstraint.constant) {
+                self.positionConstraint.constant = -self.width;
+            }
             [self.view setNeedsLayout];
             [self.view layoutIfNeeded];
         }
@@ -114,7 +117,7 @@ static const int TRPanActionThreshold = 100;
                                                               toItem:[views objectAtIndex:1]
                                                            attribute:self.boundaryConnectionAttribute
                                                           multiplier:1
-                                                            constant:0];
+                                                            constant:-self.width];
     
     NSLayoutConstraint* topConstraint = [NSLayoutConstraint constraintWithItem:self.view
                                                       attribute:NSLayoutAttributeTop

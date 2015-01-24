@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "CollectionViewController.h"
+
 #import <TRMultipanelViewController/TRMultipanelViewController.h>
 
 @interface ViewController ()
@@ -21,19 +23,16 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.multipanel setWidth:240 forSide:TRMultipanelSideTypeLeft];
-    [self.multipanel setWidth:240 forSide:TRMultipanelSideTypeRight];
-    [self.multipanel hideSide:TRMultipanelSideTypeRight animated:NO];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"multipanel"]) {
         self.multipanel = segue.destinationViewController;
         
-        UICollectionViewController* centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"centerController"];
+        [self.multipanel setConnectCenterViewToSides:YES];
+        [self.multipanel setWidth:240 forSide:TRMultipanelSideTypeLeft];
+        [self.multipanel setWidth:240 forSide:TRMultipanelSideTypeRight];
+        
+        CollectionViewController* centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"centerController"];
+        centerController.updateAfterResize = self.multipanel.connectCenterViewToSides;
         [self.multipanel setCenterController:centerController];
 
         UITableViewController* leftController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftController"];

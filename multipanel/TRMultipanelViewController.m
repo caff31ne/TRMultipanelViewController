@@ -12,11 +12,12 @@
 
 #import "UIView+TRMultipanel.h"
 
+NSString* const TRMultipanelWillShowSideNotification = @"TRMultipanelWillShowSideNotification";
 NSString* const TRMultipanelDidShowSideNotification = @"TRMultipanelDidShowSideNotification";
+NSString* const TRMultipanelWillHideSideNotification = @"TRMultipanelWillHideSideNotification";
 NSString* const TRMultipanelDidHideSideNotification = @"TRMultipanelDidHideSideNotification";
-NSString* const TRMultipanelDidToggleSideNotification = @"TRMultipanelDidToggleSideNotification";
 
-static const CGFloat TRMultipanelToggleAnimationDuration = 0.2;
+static const CGFloat TRMultipanelToggleAnimationDuration = 0.5;
 static const CGFloat TRMultipanelDefaultSideWith = 320.0;
 
 @interface TRMultipanelViewController () <TRMultipanelViewControllerSideDelegate>
@@ -130,6 +131,61 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
     return TRMultipanelSideTypeUnknown;
 }
 
+- (void)tieCenterViewToSides {
+    TRMultipanelViewControllerSide* leftSide = [self sideWithType:TRMultipanelSideTypeLeft];
+    
+    NSLayoutConstraint* leftCenterConstraint = [NSLayoutConstraint constraintWithItem:self.centerView
+                                                             attribute:NSLayoutAttributeLeading
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:leftSide.view
+                                                             attribute:NSLayoutAttributeTrailing
+                                                            multiplier:1
+                                                              constant:0];
+    leftSide.centerEdgeConstraint = leftCenterConstraint;
+    
+    TRMultipanelViewControllerSide* rightSide = [self sideWithType:TRMultipanelSideTypeRight];
+    
+    NSLayoutConstraint* rightCenterConstraint = [NSLayoutConstraint constraintWithItem:rightSide.view
+                                                              attribute:NSLayoutAttributeLeading
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.centerView
+                                                              attribute:NSLayoutAttributeTrailing
+                                                             multiplier:1
+                                                               constant:0];
+    rightCenterConstraint.priority = 999;
+    rightSide.centerEdgeConstraint = rightCenterConstraint;
+    
+    [self.view addConstraints:@[leftCenterConstraint, rightCenterConstraint]];
+}
+
+- (void)tieCenterViewToSuperview {
+    
+    TRMultipanelViewControllerSide* leftSide = [self sideWithType:TRMultipanelSideTypeLeft];
+    
+    NSLayoutConstraint* leftCenterConstraint =  [NSLayoutConstraint constraintWithItem:self.centerView
+                                                                      attribute:NSLayoutAttributeLeading
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:self.centerView.superview
+                                                                      attribute:NSLayoutAttributeLeading
+                                                                     multiplier:1
+                                                                       constant:0];
+    leftSide.centerEdgeConstraint = leftCenterConstraint;
+    
+    TRMultipanelViewControllerSide* rightSide = [self sideWithType:TRMultipanelSideTypeRight];
+    
+    NSLayoutConstraint* rightCenterConstraint = [NSLayoutConstraint constraintWithItem:self.centerView.superview
+                                                                       attribute:NSLayoutAttributeTrailing
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:self.centerView
+                                                                       attribute:NSLayoutAttributeTrailing
+                                                                      multiplier:1
+                                                                        constant:0];
+    rightCenterConstraint.priority = 999;
+    rightSide.centerEdgeConstraint = rightCenterConstraint;
+
+    [self.view addConstraints:@[leftCenterConstraint, rightCenterConstraint]];
+}
+
 - (void)addCenterConstraints {
     NSLayoutConstraint* topCenterConstraint = [NSLayoutConstraint constraintWithItem:self.centerView
                                                             attribute:NSLayoutAttributeTop
@@ -146,28 +202,12 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
                                                               multiplier:1
                                                                 constant:0];
     
-    TRMultipanelViewControllerSide* leftSide = [self sideWithType:TRMultipanelSideTypeLeft];
+    if (self.connectCenterViewToSides)
+        [self tieCenterViewToSuperview];
+    else
+        [self tieCenterViewToSides];
     
-    NSLayoutConstraint* leftCenterConstraint = [NSLayoutConstraint constraintWithItem:self.centerView
-                                                             attribute:NSLayoutAttributeLeading
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:leftSide.view
-                                                             attribute:NSLayoutAttributeTrailing
-                                                            multiplier:1
-                                                              constant:0];
-    
-    TRMultipanelViewControllerSide* rightSide = [self sideWithType:TRMultipanelSideTypeRight];
-    
-    NSLayoutConstraint* rightCenterConstraint = [NSLayoutConstraint constraintWithItem:rightSide.view
-                                                              attribute:NSLayoutAttributeLeading
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.centerView
-                                                              attribute:NSLayoutAttributeTrailing
-                                                             multiplier:1
-                                                               constant:0];
-    rightCenterConstraint.priority = 999;
-    
-    [self.view addConstraints:@[topCenterConstraint, bottomCenterConstraint, leftCenterConstraint,rightCenterConstraint]];
+    [self.view addConstraints:@[topCenterConstraint, bottomCenterConstraint]];
 }
 
 
@@ -201,6 +241,11 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
         animated:(BOOL)animated
       completion:(void (^)(TRMultipanelSideType sideType, BOOL finished))completion
 {
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRMultipanelWillShowSideNotification
+                                                        object:self
+                                                      userInfo:@{@"side":@(sideType)}];
+    
     __weak typeof(self) weakSelf = self;
     [self moveSide:sideType
           animated:animated
@@ -210,21 +255,38 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
      }
         completion:
      ^(TRMultipanelSideType sideType, BOOL finished) {
+
+         typeof(self) strongSelf = weakSelf;
+         
+         if (strongSelf.connectCenterViewToSides) {
+             TRMultipanelViewControllerSide* side = [strongSelf sideWithType:sideType];
+             side.centerEdgeConstraint.constant = side.width;
+         }
+         
          if (completion)
              completion(sideType, finished);
-         typeof(self) strongSelf = weakSelf;
+         
          [[NSNotificationCenter defaultCenter] postNotificationName:TRMultipanelDidShowSideNotification
                                                              object:strongSelf
                                                            userInfo:@{@"side":@(sideType)}];
      }];
 }
 
-
-
 - (void)hideSide:(TRMultipanelSideType)sideType
         animated:(BOOL)animated
       completion:(void (^)(TRMultipanelSideType sideType, BOOL finished))completion
 {
+    if (self.connectCenterViewToSides) {
+        TRMultipanelViewControllerSide* side = [self sideWithType:sideType];
+        side.centerEdgeConstraint.constant = 0;
+        [self.centerView setNeedsLayout];
+        [self.centerView layoutIfNeeded];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRMultipanelWillHideSideNotification
+                                                        object:self
+                                                      userInfo:@{@"side":@(sideType)}];
+    
     __weak typeof(self) weakSelf = self;
     [self moveSide:sideType
           animated:animated
@@ -234,9 +296,12 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
      }
         completion:
      ^(TRMultipanelSideType sideType, BOOL finished) {
+
+         typeof(self) strongSelf = weakSelf;
+         
          if (completion)
              completion(sideType, finished);
-         typeof(self) strongSelf = weakSelf;
+         
          [[NSNotificationCenter defaultCenter] postNotificationName:TRMultipanelDidHideSideNotification
                                                              object:strongSelf
                                                            userInfo:@{@"side":@(sideType)}];
@@ -247,22 +312,12 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
           animated:(BOOL)animated
         completion:(void (^)(TRMultipanelSideType sideType, BOOL finished))completion
 {
-    __weak typeof(self) weakSelf = self;
-    [self moveSide:sideType
-          animated:animated
-         operation:
-     ^(TRMultipanelViewControllerSide* side) {
-         side.visible = !side.visible;
-     }
-        completion:
-     ^(TRMultipanelSideType sideType, BOOL finished) {
-         if (completion)
-             completion(sideType, finished);
-         typeof(self) strongSelf = weakSelf;
-         [[NSNotificationCenter defaultCenter] postNotificationName:TRMultipanelDidToggleSideNotification
-                                                             object:strongSelf
-                                                           userInfo:@{@"side":@(sideType)}];
-     }];
+    TRMultipanelViewControllerSide* side = [self sideWithType:sideType];
+
+    if (side.visible)
+        [self hideSide:sideType animated:animated completion:completion];
+    else
+        [self showSide:sideType animated:animated completion:completion];
 }
 
 - (void)moveSide:(TRMultipanelSideType)sideType
