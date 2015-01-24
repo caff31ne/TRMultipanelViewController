@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'TRMultipanelViewController'
-  s.version  = '0.1'
+  s.version  = '0.2'
   s.platform = :ios, '6.0'
   s.license  = { :type => 'MIT', :file => 'LICENSE' }
   s.summary  = 'iOS view controller with center content and panels on both sides'
