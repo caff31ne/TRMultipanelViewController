@@ -1,9 +1,6 @@
 //
 //  TrMultipanelViewController.m
-//  tvoirecepty
-//
-//  Created by Vitaly on 3/23/14.
-//  Copyright (c) 2014 tvoirecepty. All rights reserved.
+//  Created by Vitali Bondur on 3/23/14.
 //
 
 #import "TRMultipanelViewController.h"

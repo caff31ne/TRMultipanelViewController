@@ -1,9 +1,6 @@
 //
 //  TRMultipanelViewControllerSide.h
-//  tvoirecepty
-//
-//  Created by Vitaly on 1/17/15.
-//  Copyright (c) 2015 tvoirecepty. All rights reserved.
+//  Created by Vitali Bondur on 1/17/15.
 //
 
 #import <Foundation/Foundation.h>

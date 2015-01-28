@@ -1,9 +1,6 @@
 //
 //  UIView+TRMultipanel.m
-//  Pods
-//
-//  Created by Vitaly on 1/24/15.
-//
+//  Created by Vitali Bondur on 1/24/15.
 //
 
 #import "UIView+TRMultipanel.h"
