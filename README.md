@@ -31,13 +31,10 @@ You can hide/show/toggle sides manually. For example:
 
 You can subscribe on show/hide notifications:
 
-*TRMultipanelWillShowSideNotification*
-
-*TRMultipanelDidShowSideNotification*
-
-*TRMultipanelWillHideSideNotification*
-
-*TRMultipanelDidHideSideNotification*
+    TRMultipanelWillShowSideNotification
+    TRMultipanelDidShowSideNotification
+    TRMultipanelWillHideSideNotification
+    TRMultipanelDidHideSideNotification
 
 ##License
 
