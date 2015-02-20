@@ -111,7 +111,6 @@ static CGFloat CellMargin = 10;
 
 - (void)updateLayout {
     UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    NSLog(@"Layut update: width = %f", self.view.frame.size.width);
     
     CGFloat width = (self.view.frame.size.width - 2 * ContainerPadding - ((ImagesPerLine - 1) * CellMargin)) / ImagesPerLine;
     
