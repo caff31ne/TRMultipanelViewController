@@ -106,9 +106,7 @@ static CGFloat CellMargin = 10;
 }
 
 - (void)onToggleMultipanelSide:(NSNotification*)notification {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self updateLayout];
-    });
+    [self updateLayout];
 }
 
 - (void)updateLayout {

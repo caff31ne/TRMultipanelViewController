@@ -258,6 +258,7 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
          if (strongSelf.connectCenterViewToSides) {
              TRMultipanelViewControllerSide* side = [strongSelf sideWithType:sideType];
              side.centerEdgeConstraint.constant = side.width;
+             [strongSelf.centerView layoutIfNeeded];
          }
          
          if (completion)
@@ -276,7 +277,6 @@ static const CGFloat TRMultipanelDefaultSideWith = 320.0;
     if (self.connectCenterViewToSides) {
         TRMultipanelViewControllerSide* side = [self sideWithType:sideType];
         side.centerEdgeConstraint.constant = 0;
-        [self.centerView setNeedsLayout];
         [self.centerView layoutIfNeeded];
     }
     

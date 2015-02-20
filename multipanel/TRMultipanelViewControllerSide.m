@@ -172,7 +172,8 @@ static const int TRPanActionThreshold = 100;
             [self applyTranslation:gestureRecognizer];
             break;
         case UIGestureRecognizerStateEnded:
-            if (self.width - [self applyTranslation:gestureRecognizer] > TRPanActionThreshold) {
+            [self applyTranslation:gestureRecognizer];
+            if (-self.positionConstraint.constant > TRPanActionThreshold) {
                 [self.delegate multipanelSideDidPanOutside:self];
             } else {
                 self.positionConstraint.constant = 0;
