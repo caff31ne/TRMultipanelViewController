@@ -7,9 +7,9 @@ You can customize left, right and center views.
 ![multipanel demo](https://raw.github.com/incaffeine/TRMultipanelViewController/master/multipanel-demo.gif)
 
 ## Usage 
-There are two modes of multipanel. First is when central view is connected to side view by constraints. In this case when side view change position central view change his frame according to constraints. This is default mode. 
+There are two modes of multipanel. First mode tightly connects central view to side views by constraints. When side view change position then central view changes his frame according to constraints. This is default mode. 
 
-In the second mode central view doesn't connected directly to sides. It has left/right constraints to superview. When any side slide on/off screen parent multipanel change appropriate constraint value on the center view. You can't turn this mode by setting  *connectCenterViewToSides* to *YES*
+In the second mode central view is not directly connected to sides. It has left/right constraints to superview. When any side slide on/off screen parent multipanel change appropriate constraint value on the center view. You can turn this mode by setting  *connectCenterViewToSides* to *YES*
 
 Typcal initialization
 
